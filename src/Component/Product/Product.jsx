@@ -3,38 +3,42 @@ import axios from "axios";
 import "./Product.css";
 import {Link} from 'react-router-dom'
 import Productcard from "./Productcard";
+import Loader from "../Loader/Loader";
 function Product() {
   const [products, setProducts] = useState();
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
-    //  setIsLoading(true);
+     setIsLoading(true);
     axios.get("https://fakestoreapi.com/products").then((res)=>{
       setProducts(res.data)
-      console.log(res.data);
-      // setIsLoading(false);
+     
+      setIsLoading(false);
     }).catch((err)=>{
       console.log(err)
-    // setIsLoading(false);
+    setIsLoading(false);
     })
   },[]);
    
   return (
-   
-    <section className="products_container">
-      {/* <section className="products_container">
-        {products?.map((singleproduct) => {
-          return <Productcard Product ={singleproduct} key={singleproduct.id} />;
-        })}
-      </section> */}
-
-      {Array.isArray(products) && products.length > 0 ? (
-        products.map((singleproduct) => (
-          <Productcard product={singleproduct} key={singleproduct.id} />
-        ))
+    <>
+      {isLoading ? (
+        <Loader />
       ) : (
-        <p>No products available</p>
+        <section className="products_container">
+          {Array.isArray(products) && products.length > 0 ? (
+            products.map((singleproduct) => (
+              <Productcard
+                product={singleproduct}
+                key={singleproduct.id}
+                renderadd={true}
+              />
+            ))
+          ) : (
+            <p>No products available</p>
+          )}
+        </section>
       )}
-    </section>
+    </>
   );
 }
 
