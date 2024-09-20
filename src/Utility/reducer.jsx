@@ -14,11 +14,11 @@ case Type.ADD_To_Basket:
     if(!existingitem){
       return {
         ...state,
-          basket:[...state.basket,{...action.item,amount:1}],
+          basket:[...state.basket,{...action.item, amount:1}],
       };
     }else{
       const Updatedbasket = state.basket.map((item)=>{
-        item.id === action.item.id?{
+        return item.id === action.item.id?{
           ...item,amount:item.amount +1
         }:item
       })
@@ -27,6 +27,23 @@ case Type.ADD_To_Basket:
         basket:Updatedbasket
       }
     }
+    case Type.REAMOVE_From_basket:
+       const index = state.basket.findIndex(
+         item => item.id === action.id
+       );
+       let newbasket = [...state.basket];
+       if(index >=0){
+        if(newbasket[index].amount>1){
+          newbasket[index]={...newbasket[index],amoint: newbasket[index].amount-1}
+        }else{
+          newbasket.splice(index,1)
+        }
+       }
+       return {
+        ...state,
+        basket:newbasket
+
+       }
     default:
         return state;
     

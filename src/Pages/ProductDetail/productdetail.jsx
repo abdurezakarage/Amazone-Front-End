@@ -7,7 +7,7 @@ import Layout from "../../Component/Layout/Layout";
 import Productcard from "../../Component/Product/Productcard";
 import Loader from "../../Component/Loader/Loader";
 function Productdetail() {
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
   const { productId } = useParams();
   const[isLoading,setIsLoading]= useState(false)
   useEffect(() => {

@@ -6,11 +6,26 @@ import { DataContext } from '../../Component/Dataprovider/Dataprovider'
 import Currenceyformat from '../../Component/Currencey/Currenceyformat'
 import Productcard from '../../Component/Product/Productcard'
 import productUrl from '../../APi/Endpoint'
+import { Type } from '../../Utility/action.Type'
+import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
 function Cart() {
   const[{basket, user},dispatch]= useContext(DataContext)
   const total = basket.reduce((amount,item)=>{
-    return item.price*item.amount + amount
+    return item.price * item.amount + amount;
   },0)
+const increament = (item)=>{
+  dispatch(
+    {
+      type:Type.ADD_To_Basket,item
+    }
+  )
+}
+const decreament = (id)=>{
+  dispatch({
+    type:Type.REAMOVE_From_basket,id
+  })
+}
 
   return (
     <Layout>
@@ -24,13 +39,24 @@ function Cart() {
           ) : (
             basket?.map((item, i) => {
               return (
-                <Productcard
-                  product={item}
-                  key={i}
-                  flex={true}
-                  renderadd={false}
-                  renderDesc={true}
-                />
+                <section className="cart_product">
+                  <Productcard
+                    product={item}
+                    key={i}
+                    flex={true}
+                    renderadd={false}
+                    renderDesc={true}
+                  />
+                  <div className="btn_contaner">
+                    <button className="btn" onClick={() => increament(item.id)}>
+                      <IoIosArrowUp/>
+                    </button>
+                    <span>{item.amount}</span>
+                    <button className="btn" onClick={() => decreament(item.id)}>
+                      <IoIosArrowDown/>
+                    </button>
+                  </div>
+                </section>
               );
             })
           )}
