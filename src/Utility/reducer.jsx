@@ -1,7 +1,8 @@
 import { useReducer } from "react"
 import { Type } from "./action.Type"
 export const initialstate= {
-basket:[]
+basket:[],
+user: null
 }
 export const reducer = (state,action)=>{
 switch(action.type){
@@ -34,7 +35,7 @@ case Type.ADD_To_Basket:
        let newbasket = [...state.basket];
        if(index >=0){
         if(newbasket[index].amount>1){
-          newbasket[index]={...newbasket[index],amoint: newbasket[index].amount-1}
+          newbasket[index]={...newbasket[index],amount: newbasket[index].amount-1}
         }else{
           newbasket.splice(index,1)
         }
@@ -44,6 +45,18 @@ case Type.ADD_To_Basket:
         basket:newbasket
 
        }
+       case Type.EMPTY_BASKET:
+        return{
+          ...state,
+          basket:[],
+
+        }
+       case Type.SET_USER:
+        return{
+          ...state,
+          user:action.user,
+          
+        }
     default:
         return state;
     

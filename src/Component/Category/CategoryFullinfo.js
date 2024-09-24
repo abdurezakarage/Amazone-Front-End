@@ -5,7 +5,7 @@
      imglink: "https://m.media-amazon.com/images/I/51tAQi9kDjL._AC_UL320_.jpg",
    },
    {
-     title: "Discover fashion trends",
+     title: "Women's clothing",
      name: "women's clothing",
      imglink: "https://m.media-amazon.com/images/I/712VS5u4uvL._AC_UL320_.jpg",
    },

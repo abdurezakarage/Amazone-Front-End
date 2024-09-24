@@ -10,7 +10,7 @@ function Landing() {
       <Carousell />
       <Category />
       <Product/>
-      {/* <Productcard /> */}
+     
     </Layout>
   );
 }

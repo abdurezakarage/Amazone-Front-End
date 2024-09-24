@@ -3,16 +3,16 @@ import "./Header.css";
 import logo from "../../assets/logo.jpeg";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
-// import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import { GrLocation } from "react-icons/gr";
+import { auth } from "../../Utility/firebase";
 import { BiCart } from "react-icons/bi";
 import { DataContext } from "../Dataprovider/Dataprovider";
 import Lowerheader from "./Lowerheader";
 function Header() {
-  const [{basket}, dispatch] = useContext(DataContext);
- const totalitem= basket?.reduce((amount,item)=>{
-  return item.amount+amount
- },0)
+  const [{ basket, user }, dispatch] = useContext(DataContext);
+  const totalitem = basket?.reduce((amount, item) => {
+    return item.amount + amount;
+  }, 0);
   return (
     <section className="fixed">
       <div className="header_container">
@@ -54,9 +54,21 @@ function Header() {
               <option value="">EN</option>
             </select>
           </Link>
-          <Link to="/auth">
-            <p>Sign In</p>
-            <span>Account & Lists</span>
+          <Link to={!user && "/auth"}>
+            <div>
+              {user ? (
+                <>
+                  <p>Hello {user?.email?.split("@")[0]}</p>
+                  <span onClick={() => auth.signOut()}>Sign out</span>
+                </>
+              ) : (
+                <>
+                  <p>Hello , sign in</p>
+                  <span>Account & Lists</span>
+                </>
+              )}
+            </div>
+            {/* <p>Sign In</p> */}
           </Link>
           <Link to="/orders">
             <p>Returns</p>
