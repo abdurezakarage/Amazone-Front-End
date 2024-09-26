@@ -3,8 +3,8 @@ import Categoryinfo from "./CategoryFullinfo.js";
 import { Link } from "react-router-dom";
 function Categorycard({ data }) {
   return (
-    <div>
-      <Link to={`/Category/${data.name}`} className="flex">
+    <div className="category">
+      <Link to={`/Category/${data.name}`} className="fle">
         <span>
           <h2>{data?.title}</h2>
         </span>

@@ -25,6 +25,8 @@ color: rgb(35,35,35);
     font-weight: bold;
     color: rgb(9,132,209);
     margin-left: 20px;
+    text-align: center;
+    padding-top: 10px;
 }
 .category_container{
     position: relative;

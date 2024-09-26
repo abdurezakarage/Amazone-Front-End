@@ -14,6 +14,7 @@ function Cart() {
   const total = basket.reduce((amount,item)=>{
     return item.price * item.amount + amount;
   },0)
+  console.log(basket);
 const increament = (item)=>{
   dispatch(
     {
