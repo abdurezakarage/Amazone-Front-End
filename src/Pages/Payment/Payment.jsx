@@ -39,7 +39,7 @@ function Payment() {
       console.log(response.data);
       const clientSecret = response.data?.clientSecret;
       // step 2: client side or react side confirmation
-      const { paymentInten } = stripe.confirmCardPayment(clientSecret, {
+      const {paymentIntent} = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: elements.getElement(CardElement),
         },
@@ -50,21 +50,20 @@ function Payment() {
         .collection("users")
         .doc(user.uid)
         .collection("orders")
-        .doc(paymentIntent.id);
-      set({
-        basket: basket,
-        amount: paymentIntent.amount,
-        created: paymentIntent.created,
-      });
-      //empty the basket
-      // dispach(
-      //   { type: "EMPTY_BASKET" }
-      // )
-      // setProcessing(false);
-      // navigate("/Orders",{state:{msg:"you have placed new order"}});
+        .doc(paymentIntent.id)
+        .set({
+          basket: basket,
+          amount: paymentIntent.amount,
+          created: paymentIntent.created,
+        });
+
+      // empty the basket
+      dispach({ type: "EMPTY_BASKET" });
+      setProcessing(false);
+      navigate("/Orders", { state: { msg: "you have placed new order" } });
     } catch (error) {
-      // console.log(error);
-      // setProcessing(false);
+      console.log(error);
+      setProcessing(false);
     }
   };
   return (
@@ -110,14 +109,14 @@ function Payment() {
                 <div className="payment_price">
                   <div>
                     <span style={{ display: "flex" }}>
-                      <p>Total order |</p>
+                      <p>Total order </p>
                       <Currenceyformat amount={total} />
                     </span>
                   </div>
                   <button type="submit">
                     {processing ? (
                       <div className="loading">
-                        <ClipLoader color="grey" size={12} />{" "}
+                        <ClipLoader color="grey" size={12} />
                         <p>please wait ...</p>
                       </div>
                     ) : (

@@ -32,17 +32,18 @@ function Orders() {
         <div className="orders_container">
           <h2>Your orders</h2>
           {/* {ordered item} */}
-{Orders?.length == 0 && <div style={{padding:"5px"}}>you dont have orders</div>}
+          {Orders?.length == 0 && (
+            <div style={{ padding: "5px" }}>you dont have orders</div>
+          )}
           <div>
-            {Orders?.map((eachorder,i) => {
+            {Orders?.map((eachorder, i) => {
               return (
                 <div>
                   <hr />
-                  <p>order ID: {id}</p>
+                  {/* <p>order ID: {id}</p> */}
                   {eachorder?.data?.basket?.map((order) => (
-
                     <Productcard flex={true} product={order} key={order.id} />
-            ))}
+                  ))}
                 </div>
               );
             })}
