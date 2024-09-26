@@ -10,5 +10,5 @@ import axios from "axios";
 
 //deployed on render base url
  export const axiosInstance = axios.create({
-   baseURL: "https:amazone-api-backend-deploy-xuqo.onrender.com",
+   baseURL: "https://amazone-api-backend-deploy-xuqo.onrender.com",
  });
