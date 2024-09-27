@@ -19,12 +19,12 @@ const navStatedata= useLocation()
 console.log(navStatedata);
   const authhandler = (e)=>{
     e.preventDefault()
-    console.log(e.target.name);
+    // console.log(e.target.name);
     if(e.target.name == "signin"){
 //firebase auth
 setLoading({...loading,signIn:true})
 signInWithEmailAndPassword(auth,email,password).then((userinfo)=>{
-  console.log(userinfo);
+  // console.log(userinfo);
   dispach({
     type:Type.SET_USER,
     user:userinfo.user

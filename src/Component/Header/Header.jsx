@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { GrLocation } from "react-icons/gr";
 import { auth } from "../../Utility/firebase";
 import { BiCart } from "react-icons/bi";
+import { IoSearch } from "react-icons/io5";
 import { DataContext } from "../Dataprovider/Dataprovider";
 import Lowerheader from "./Lowerheader";
 function Header() {
@@ -35,7 +36,7 @@ function Header() {
             </div>
           </div>
         </div>
-        <div className="search">
+        {/* <div className="search">
           <select name="" id="">
             <option value="">All</option>
           </select>
@@ -43,6 +44,13 @@ function Header() {
           <div className="searchicon">
             <SearchIcon />
           </div>
+        </div> */}
+        <div className="search">
+          <select name="" id="">
+            <option value="">All</option>
+          </select>
+          <input type="text" />
+          <IoSearch size={43} />
         </div>
         <div className="order_container">
           <Link href="" className="language">
