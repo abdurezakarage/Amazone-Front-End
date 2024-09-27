@@ -36,7 +36,7 @@ const decreament = (id)=>{
           <h3>Your shoping basket</h3>
           <hr />
           {basket?.length == 0 ? (
-            <p>No itme in your cart</p>
+            <p>No item in your cart</p>
           ) : (
             basket?.map((item, i) => {
               return (
