@@ -36,15 +36,7 @@ function Header() {
             </div>
           </div>
         </div>
-        {/* <div className="search">
-          <select name="" id="">
-            <option value="">All</option>
-          </select>
-          <input type="text" />
-          <div className="searchicon">
-            <SearchIcon />
-          </div>
-        </div> */}
+       
         <div className="search">
           <select name="" id="">
             <option value="">All</option>
